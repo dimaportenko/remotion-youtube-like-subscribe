@@ -1,11 +1,14 @@
 import React from 'react';
-import {interpolate, useCurrentFrame} from 'remotion';
+import {interpolate, useCurrentFrame, Img} from 'remotion';
+import {Logo} from './Logo';
+import {Like} from './Like';
+import {Subscribe} from './Subscribe';
 
 export const Container: React.FC<{
 	height?: number;
 	offset?: number;
 	framesToAppear?: number;
-}> = ({height = 200, offset = 10, framesToAppear = 20}) => {
+}> = ({height = 200, offset = 10, framesToAppear = 15}) => {
 	const frame = useCurrentFrame();
 	const opacity = interpolate(frame, [0, framesToAppear], [0, 1], {
 		extrapolateLeft: 'clamp',
@@ -29,13 +32,31 @@ export const Container: React.FC<{
 				bottom: offset,
 				transform: `translateY(${translateY}px)`,
 			}}
-			className="items-center justify-center flex w-full absolute"
+			className="flex w-full absolute justify-center"
 		>
 			<div
-				className="flex flex-col items-center justify-center bg-white rounded-lg shadow-lg py-10"
-				style={{width: 800}}
+				className="flex flex-row items-center bg-white rounded-lg shadow-lg py-10"
+				style={{width: 870}}
 			>
-				Edit <code>src/Container.tsx</code> and save to reload.
+				<div className="mx-10">
+					<Logo />
+				</div>
+
+				<div>
+					<div className="text-4xl">Dima Portenko</div>
+					<div style={{height: 15}} />
+					<div className="text-xl">React Native tutorials, coding topics</div>
+				</div>
+
+				<div className="flex flex-1 justify-end mr-10">
+					<div className="flex flex-row items-center">
+						<Like />
+
+						<div style={{width: 20}} />
+
+						<Subscribe />
+					</div>
+				</div>
 			</div>
 		</div>
 	);
